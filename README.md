@@ -35,3 +35,17 @@ CI запускает эти же проверки на push/PR. E2E подни�
 Не коммитить реальные .env, ключи и тестовые пароли. .env.example содержит только имена. Публикация репозитория на GitHub не заменяет деплой на Vercel. Баллы и сроки — по выданному силлабусу.
 
 [Карта пяти пар](docs/course-map.md) · [Результат проверки исходной заготовки](docs/verification.md).
+
+
+## Мой запуск (macOS)
+
+1. Установлены Node 24.22.3 (установщик с nodejs.org) и git 2.50.1 (Command Line Tools).
+2. `git clone https://github.com/kslominskaya-ai/vetnow.git`, затем `cd vetnow`.
+3. `npm ci`, затем `npm run dev`, сайт открывается на http://localhost:3000.
+4. Тесты: один раз `npx playwright install chromium`, затем `npm run test:e2e`.
+
+### Трудности при запуске
+
+- `npm run test:e2e` падает с ошибкой «Another next dev server is already running», если в этой же папке запущен `npm run dev`. Решение: остановить сервер (Ctrl+C), запустить тесты, потом снова `npm run dev`.
+- npm предлагает обновиться до новой версии. Не обновляла, на запуск это не влияет.
+- Ошибка сборки «Expression expected» в app/page.tsx из-за лишнего `</` при замене заголовка. Решение: проверить строку из ошибки и строку над ней.
